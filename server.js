@@ -1,26 +1,22 @@
-const fs = require('fs'),
-	express = require('express'),
-	app = express(),
-	bodyParser = require('body-parser');
+const express = require('express'),
+	bodyParser = require('body-parser'),
+	app = express();
 
-let stringifyFile = '';
-
-app.use(bodyParser.json());
-
-app.get('/getNote', (req, res) => {
-	fs.readFile('./test.json', 'utf8', (err, data) => {
-		if (err) throw err;
-		stringifyFile = data;
-		res.send(data);
-	});
+app.use('/store', (req, res, next) => {
+	console.log('Jestem pośrednikiem przy żądaniu do /store');
+	next();
 })
 
-app.post('/updateNote/:note', (req, res) => {
-	stringifyFile += req.params.note;
-	fs.writeFile('./test.json', stringifyFile, (err) => {
-		if (err) throw err;
-		console.log('file updated');
-	});
+app.get('/', (req, res) => {
+	res.send('Privet mir!');
+})
+
+app.get('/store', (req, res) => {
+	res.send('Eta magazin.');
 })
 
 app.listen(3000);
+
+app.use( (req, res, next) => {
+	res.status(404).send('YA vvernuta :(');
+})
