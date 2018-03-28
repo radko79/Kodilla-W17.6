@@ -1,5 +1,5 @@
 {
-  "name": "17.4",
+  "name": "17.6",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "nodemon": "^1.17.2"
+    "nodemon": "^1.17.2",
+    "pug": "^2.0.3"
   }
 }
